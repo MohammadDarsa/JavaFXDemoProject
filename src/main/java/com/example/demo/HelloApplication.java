@@ -1,8 +1,10 @@
 package com.example.demo;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,31 +14,19 @@ import java.util.List;
 
 public class HelloApplication extends Application {
 
-    /*
-        Here we're adding an image manually to our scene using this function,
-        this function creates an image, and an image view of that image, then adds it to root of the scene graph, so it gets displayed
-     */
-
-    public void addImage(Group root, double x, double y, String path) {
-        Image image = new Image(path);
-        ImageView imageView = new ImageView(image);
-        imageView.setX(x);
-        imageView.setY(y);
-        root.getChildren().add(imageView);
-    }
-
     @Override
     public void start(Stage stage) throws Exception {
         /*
-            A group extends Parent and Parent extends Node
-            here we use this as the Scene graph and give it to construct a scene
+            This time we are using scenebuilder, so we built our xml file and now we load it like this,
+            notice it's a Parent object, this is important, we can't import our own objects manually this time,
+            the rest is the same as before
          */
-        Group group = new Group();
+        Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
         /*
             A scene is needed for a stage to display the scene content
             and a scene need content, so we have that group
          */
-        Scene scene = new Scene(group);
+        Scene scene = new Scene(root, 400, 400);
         /*
             We can set different fields of the stage to values we want
             like adding an icon, changing the width and height, and so on...
@@ -46,12 +36,6 @@ public class HelloApplication extends Application {
         //here we have to get the icons List and add our icon to it
         stage.getIcons().add(icon);
         stage.setTitle("I hate saber, rin best girl <3");
-
-        /*
-            Here we'll add an image of rin just for demonstration purposes
-         */
-        addImage(group, 0, 0, "images/rin.png");
-
         /*
             here we assign the scene we created to the stage
             and make it visible via stage.show() method
