@@ -17,7 +17,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         /*
-            This time we are using scenebuilder, so we built our xml file and now we load it like this,
+            This time we are using scene builder, so we built our xml file and now we load it like this,
             notice it's a Parent object, this is important, we can't import our own objects manually this time,
             the rest is the same as before
          */
@@ -36,6 +36,14 @@ public class HelloApplication extends Application {
         //here we have to get the icons List and add our icon to it
         stage.getIcons().add(icon);
         stage.setTitle("I hate saber, rin best girl <3");
+        /*
+            we can also apply some css to jfx,
+            the css gets applied to a scene and works exactly the same as in web, the main difference here is that all
+            the properties start with -fx-
+            here's how we configure it
+         */
+        String cssPath = getClass().getResource("/css/rinStyling.css").toExternalForm();
+        scene.getStylesheets().add(cssPath);
         /*
             here we assign the scene we created to the stage
             and make it visible via stage.show() method
