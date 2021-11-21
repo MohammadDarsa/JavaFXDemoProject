@@ -2,11 +2,29 @@ package com.example.demo;
 
 import javafx.application.Application;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.util.List;
+
 public class HelloApplication extends Application {
+
+    /*
+        Here we're adding an image manually to our scene using this function,
+        this function creates an image, and an image view of that image, then adds it to root of the scene graph, so it gets displayed
+     */
+
+    public void addImage(Group root, double x, double y, String path) {
+        Image image = new Image(path);
+        ImageView imageView = new ImageView(image);
+        imageView.setX(x);
+        imageView.setY(y);
+        root.getChildren().add(imageView);
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         /*
@@ -28,6 +46,12 @@ public class HelloApplication extends Application {
         //here we have to get the icons List and add our icon to it
         stage.getIcons().add(icon);
         stage.setTitle("I hate saber, rin best girl <3");
+
+        /*
+            Here we'll add an image of rin just for demonstration purposes
+         */
+        addImage(group, 0, 0, "images/rin.png");
+
         /*
             here we assign the scene we created to the stage
             and make it visible via stage.show() method
