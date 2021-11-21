@@ -26,7 +26,7 @@ public class HelloApplication extends Application {
             A scene is needed for a stage to display the scene content
             and a scene need content, so we have that group
          */
-        Scene scene = new Scene(root, 400, 400);
+        Scene scene = new Scene(root);
         /*
             We can set different fields of the stage to values we want
             like adding an icon, changing the width and height, and so on...
